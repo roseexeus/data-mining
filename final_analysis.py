@@ -1,3 +1,4 @@
+
 import os
 import pandas as pd
 import numpy as np
@@ -139,6 +140,30 @@ rf_lr_regret = RandomForestRegressor(n_estimators=100, random_state=42)
 rf_lr_regret.fit(X_train_lr, y_regret_train_lr)
 rf_imp_lr_regret = rf_lr_regret.feature_importances_
 
+# -------------------
+# LR REGRET: PRINT ANALYSIS
+# -------------------
+print("\n" + "="*60)
+print("LOGISTIC REGRESSION - REGRET: ANALYSIS")
+print("="*60)
+from sklearn.metrics import classification_report
+print("\nClassification Report (LR - Regret):")
+print(classification_report(y_regret_test_lr, y_pred_lr_regret))
+print("Confusion Matrix (LR - Regret):")
+print(confusion_matrix(y_regret_test_lr, y_pred_lr_regret))
+cv_lr_reg = cross_val_score(lr_regret, X_lr, df['regret_label'], cv=5)
+print(f"5-Fold CV Accuracy (LR - Regret): {cv_lr_reg.mean():.4f} (+/- {cv_lr_reg.std():.4f})")
+
+# Random forest metrics for LR regret feature set
+y_pred_rf_lr_regret = rf_lr_regret.predict(X_test_lr)
+print("\nRandom Forest (on LR feature set) - Regret metrics:")
+print(f"R^2: {r2_score(y_regret_test_lr, y_pred_rf_lr_regret):.4f}")
+print(f"RMSE: {np.sqrt(mean_squared_error(y_regret_test_lr, y_pred_rf_lr_regret)):.4f}")
+print(f"MAE: {mean_absolute_error(y_regret_test_lr, y_pred_rf_lr_regret):.4f}")
+print("Feature importances (RF - Regret):")
+for feat, imp in zip(all_features_lr, rf_imp_lr_regret):
+    print(f"  {feat}: {imp:.4f}")
+
 plot_lr_analysis('regret_label', y_regret_test_lr, y_pred_lr_regret, corr_lr_regret,
                  rf_importances=rf_imp_lr_regret, filename='lr_regret_analysis.png', ylabel='Avg Regret Label', title_prefix='LR')
 
@@ -150,6 +175,28 @@ rf_imp_lr_sat = rf_lr_sat.feature_importances_
 
 plot_lr_analysis('outcome_satisfaction', y_sat_test_lr, y_pred_lr_sat, corr_lr_sat,
                  rf_importances=rf_imp_lr_sat, filename='lr_satisfaction_analysis.png', ylabel='Avg Outcome Satisfaction', title_prefix='LR')
+
+# -------------------
+# LR SATISFACTION: PRINT ANALYSIS
+# -------------------
+print("\n" + "="*60)
+print("LOGISTIC REGRESSION - SATISFACTION: ANALYSIS")
+print("="*60)
+print("\nClassification Report (LR - Satisfaction):")
+print(classification_report(y_sat_test_lr, y_pred_lr_sat))
+print("Confusion Matrix (LR - Satisfaction):")
+print(confusion_matrix(y_sat_test_lr, y_pred_lr_sat))
+cv_lr_sat_scores = cross_val_score(lr_sat, X_lr, df['outcome_satisfaction'], cv=5)
+print(f"5-Fold CV Accuracy (LR - Satisfaction): {cv_lr_sat_scores.mean():.4f} (+/- {cv_lr_sat_scores.std():.4f})")
+
+y_pred_rf_lr_sat = rf_lr_sat.predict(X_test_lr)
+print("\nRandom Forest (on LR feature set) - Satisfaction metrics:")
+print(f"R^2: {r2_score(y_sat_test_lr, y_pred_rf_lr_sat):.4f}")
+print(f"RMSE: {np.sqrt(mean_squared_error(y_sat_test_lr, y_pred_rf_lr_sat)):.4f}")
+print(f"MAE: {mean_absolute_error(y_sat_test_lr, y_pred_rf_lr_sat):.4f}")
+print("Feature importances (RF - Satisfaction):")
+for feat, imp in zip(all_features_lr, rf_imp_lr_sat):
+    print(f"  {feat}: {imp:.4f}")
 
 # -------------------------
 # PART B — Naive Bayes analyses (no feature interactions)
@@ -169,6 +216,29 @@ y_pred_nb_reg = nb_reg.predict(X_test_nb_reg)
 rf_nb_reg = RandomForestRegressor(n_estimators=100, random_state=42)
 rf_nb_reg.fit(X_train_nb_reg, y_train_nb_reg)
 rf_imp_nb_reg = rf_nb_reg.feature_importances_
+# -------------------
+# NB REGRET: PRINT ANALYSIS
+# -------------------
+print("\n" + "="*60)
+print("NAIVE BAYES - REGRET: ANALYSIS")
+print("="*60)
+from sklearn.metrics import classification_report
+print("\nClassification Report (NB - Regret):")
+print(classification_report(y_test_nb_reg, y_pred_nb_reg))
+print("Confusion Matrix (NB - Regret):")
+print(confusion_matrix(y_test_nb_reg, y_pred_nb_reg))
+cv_nb_reg = cross_val_score(nb_reg, X_nb, df['regret_label'], cv=5)
+print(f"5-Fold CV Accuracy (NB - Regret): {cv_nb_reg.mean():.4f} (+/- {cv_nb_reg.std():.4f})")
+
+# RF metrics for NB regret
+y_pred_rf_nb_reg = rf_nb_reg.predict(X_test_nb_reg)
+print("\nRandom Forest (NB feature set) - Regret metrics:")
+print(f"R^2: {r2_score(y_test_nb_reg, y_pred_rf_nb_reg):.4f}")
+print(f"RMSE: {np.sqrt(mean_squared_error(y_test_nb_reg, y_pred_rf_nb_reg)):.4f}")
+print(f"MAE: {mean_absolute_error(y_test_nb_reg, y_pred_rf_nb_reg):.4f}")
+print("Feature importances (RF - NB Regret):")
+for feat, imp in zip(feature_columns, rf_imp_nb_reg):
+    print(f"  {feat}: {imp:.4f}")
 
 # Plot NB regret
 corr_nb_reg = df[feature_columns + ['regret_label']].corr()
@@ -219,6 +289,28 @@ y_pred_nb_sat = nb_sat.predict(X_test_nb_sat)
 rf_nb_sat = RandomForestRegressor(n_estimators=100, random_state=42)
 rf_nb_sat.fit(X_train_nb_sat, y_train_nb_sat)
 rf_imp_nb_sat = rf_nb_sat.feature_importances_
+# -------------------
+# NB SATISFACTION: PRINT ANALYSIS
+# -------------------
+print("\n" + "="*60)
+print("NAIVE BAYES - SATISFACTION: ANALYSIS")
+print("="*60)
+print("\nClassification Report (NB - Satisfaction):")
+print(classification_report(y_test_nb_sat, y_pred_nb_sat))
+print("Confusion Matrix (NB - Satisfaction):")
+print(confusion_matrix(y_test_nb_sat, y_pred_nb_sat))
+cv_nb_sat = cross_val_score(nb_sat, X_nb, df['outcome_satisfaction'], cv=5)
+print(f"5-Fold CV Accuracy (NB - Satisfaction): {cv_nb_sat.mean():.4f} (+/- {cv_nb_sat.std():.4f})")
+
+# RF metrics for NB satisfaction
+y_pred_rf_nb_sat = rf_nb_sat.predict(X_test_nb_sat)
+print("\nRandom Forest (NB feature set) - Satisfaction metrics:")
+print(f"R^2: {r2_score(y_test_nb_sat, y_pred_rf_nb_sat):.4f}")
+print(f"RMSE: {np.sqrt(mean_squared_error(y_test_nb_sat, y_pred_rf_nb_sat)):.4f}")
+print(f"MAE: {mean_absolute_error(y_test_nb_sat, y_pred_rf_nb_sat):.4f}")
+print("Feature importances (RF - NB Satisfaction):")
+for feat, imp in zip(feature_columns, rf_imp_nb_sat):
+    print(f"  {feat}: {imp:.4f}")
 
 corr_nb_sat = df[feature_columns + ['outcome_satisfaction']].corr()
 fig = plt.figure(figsize=(20,12))
