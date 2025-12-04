@@ -35,6 +35,7 @@ images/
 - **Sklearn.model_selection**: from this, will need to import *train_test_split* and *cross_val_score*
 - **Sklearn.naive_bayes**: from this, will need to import **GaussianNB**
 
+Our fully trnsformed data set is under transformed_dataset.csv. It has been pre-loaded in the python code file.
 To run the program...
 ### Execution
 ```bash
