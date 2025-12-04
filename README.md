@@ -25,8 +25,6 @@ images/
 - **Compiler**: e.g., `gcc` for C/C++, `rustc` for Rust.
 - **Dependencies**: List any libraries or frameworks necessary (rust only).
 
-### Compilation
-For a C/C++ example:
 ```bash
 make
 ```
