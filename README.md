@@ -41,6 +41,10 @@ To run the program...
 ```bash
 python final_analysis.py
 ```
+Or...
+```bash
+py final_analysis.py
+```
 This will display the results/metrics of our trained models in the terminal. It will also create an images folder and produce 4 different images, each showing the visualizations of our training and testing, along with the results of the study. 
 
 Execution time: Less than 1 minute, approximately 28.9 seconds. 
