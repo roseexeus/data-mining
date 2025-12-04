@@ -147,6 +147,10 @@ print("\n" + "="*60)
 print("LOGISTIC REGRESSION - REGRET: ANALYSIS")
 print("="*60)
 from sklearn.metrics import classification_report
+print("\nFeature Statistics by Regret Label:")
+for feature in feature_columns:
+    print(f"\n{feature}:")
+    print(df.groupby('regret_label')[feature].agg(['mean', 'std']))
 print("\nClassification Report (LR - Regret):")
 print(classification_report(y_regret_test_lr, y_pred_lr_regret))
 print("Confusion Matrix (LR - Regret):")
@@ -182,6 +186,10 @@ plot_lr_analysis('outcome_satisfaction', y_sat_test_lr, y_pred_lr_sat, corr_lr_s
 print("\n" + "="*60)
 print("LOGISTIC REGRESSION - SATISFACTION: ANALYSIS")
 print("="*60)
+print("\nFeature Statistics by Outcome Satisfaction:")
+for feature in feature_columns:
+    print(f"\n{feature}:")
+    print(df.groupby('outcome_satisfaction')[feature].agg(['mean', 'std']))
 print("\nClassification Report (LR - Satisfaction):")
 print(classification_report(y_sat_test_lr, y_pred_lr_sat))
 print("Confusion Matrix (LR - Satisfaction):")
@@ -223,6 +231,10 @@ print("\n" + "="*60)
 print("NAIVE BAYES - REGRET: ANALYSIS")
 print("="*60)
 from sklearn.metrics import classification_report
+print("\nFeature Statistics by Regret Label:")
+for feature in feature_columns:
+    print(f"\n{feature}:")
+    print(df.groupby('regret_label')[feature].agg(['mean', 'std']))
 print("\nClassification Report (NB - Regret):")
 print(classification_report(y_test_nb_reg, y_pred_nb_reg))
 print("Confusion Matrix (NB - Regret):")
@@ -295,6 +307,10 @@ rf_imp_nb_sat = rf_nb_sat.feature_importances_
 print("\n" + "="*60)
 print("NAIVE BAYES - SATISFACTION: ANALYSIS")
 print("="*60)
+print("\nFeature Statistics by Outcome Satisfaction:")
+for feature in feature_columns:
+    print(f"\n{feature}:")
+    print(df.groupby('outcome_satisfaction')[feature].agg(['mean', 'std']))
 print("\nClassification Report (NB - Satisfaction):")
 print(classification_report(y_test_nb_sat, y_pred_nb_sat))
 print("Confusion Matrix (NB - Satisfaction):")
