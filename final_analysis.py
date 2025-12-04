@@ -95,7 +95,7 @@ def plot_lr_analysis(target_col, y_test, y_pred, corr_df, rf_importances=None, f
         ax.set_title(f'Interaction: {inter}')
         ax.grid(alpha=0.2)
 
-    # Row 2: correlation heatmap and  RF importances
+    # Row 2: correlation heatmap and  Random Forest (RF) importances
     ax1 = fig.add_subplot(gs[1, :int(n_cols/2)])
     sns.heatmap(corr_df, annot=True, cmap='coolwarm', center=0, ax=ax1)
     ax1.set_title(f'Feature Correlation Heatmap ({target_col})')
@@ -375,3 +375,4 @@ print(' - lr_regret_analysis.png')
 print(' - lr_satisfaction_analysis.png')
 print(' - nb_regret_analysis.png')
 print(' - nb_satisfaction_analysis.png')
+
