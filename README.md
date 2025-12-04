@@ -3,8 +3,8 @@
 Design and develop a shell interface that supports input/output redirection, piping, background processing, and a set of built-in functions. 
 
 ## Group Members
-- **Rose Exeus**: @fsu.edu
-- **Chris Cargil**: @fsu.edu
+- **Rose Exeus**: re22c@fsu.edu
+- **Chris Cargill**: cac19r@fsu.edu
 
   
 ## File Listing
