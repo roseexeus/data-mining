@@ -1,7 +1,5 @@
 # Final Report
-
-Design and develop a shell interface that supports input/output redirection, piping, background processing, and a set of built-in functions. 
-
+Goal: Use mahcine learning to identify patterns and correlations between motivational sources and the decision making process.
 ## Group Members
 - **Rose Exeus**: re22c@fsu.edu
 - **Chris Cargill**: cac19r@fsu.edu
