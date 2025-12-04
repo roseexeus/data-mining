@@ -7,7 +7,7 @@ Design and develop a shell interface that supports input/output redirection, pip
 - **Chris Cargill**: cac19r@fsu.edu
 
   
-## File Listing
+## File Listing 
 ```
 images/
 │ ├── lr_satisfaction_analysis.png
@@ -35,13 +35,12 @@ images/
 - **Sklearn.model_selection**: from this, will need to import *train_test_split* and *cross_val_score*
 - **Sklearn.naive_bayes**: from this, will need to import **GaussianNB**
 
-```bash
-make
-```
-This will build the executable in ...
+To run the program...
 ### Execution
 ```bash
-make run
+python final_analysis.py
 ```
-This will run the program ...
+This will display the results/metrics of our trained models in the terminal. It will also create an images folder and produce 4 different images, each showing the visualizations of our training and testing, along with the results of the study. 
+
+Execution time: Less than 1 minute, approximately 28.9 seconds. 
 
